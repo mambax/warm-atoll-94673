@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class MathController {
     @GetMapping("add")
     public Integer add(@RequestParam(name = "summand1", defaultValue = "1") Integer s1, @RequestParam(name = "summand2", defaultValue = "1") Integer s2) {
-        return s1+s2;
+        return s1-s2;
     }
 }
