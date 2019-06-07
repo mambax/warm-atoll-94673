@@ -1,7 +1,6 @@
 package ch.abbts.swt.swayingcitadell.strategy;
 
 import ch.abbts.swt.strategy.IntegerSortRequestModel;
-import ch.abbts.swt.strategy.IntegerSortResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
