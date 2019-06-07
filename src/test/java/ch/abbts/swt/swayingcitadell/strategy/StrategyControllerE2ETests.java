@@ -32,7 +32,6 @@ public class StrategyControllerE2ETests {
         .expectStatus()
         .isOk()
         .expectBody()
-        .jsonPath("$.result").isNotEmpty()
-        .jsonPath("$.result").isArray();
+        .json("{result:[1,2,4,6,9]}");
   }
 }
