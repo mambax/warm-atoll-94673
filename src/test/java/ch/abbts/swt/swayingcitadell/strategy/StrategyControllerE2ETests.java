@@ -20,7 +20,7 @@ public class StrategyControllerE2ETests {
   @Test
   public void testSort() throws Exception {
     IntegerSortRequestModel rm = new IntegerSortRequestModel();
-    rm.setIntegers(new Integer[]{6, 2, 9, 4, 1});
+    rm.setNumbers(new Integer[]{6, 2, 9, 4, 1});
     rm.setSortStrategy("BUBBLE_SORT");
     this.webClient
         .post()
