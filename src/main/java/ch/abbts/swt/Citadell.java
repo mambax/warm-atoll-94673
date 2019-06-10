@@ -5,18 +5,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 @Controller
 @SpringBootApplication
+@EnableSwagger2
 public class Citadell {
-    @RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Hello Citadell!";
-    }
 
-    public static void main(String[] args) {
-        SpringApplication.run(Citadell.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(Citadell.class, args);
+  }
+
+  @RequestMapping("/")
+  @ResponseBody
+  String home() {
+    return "Hello Citadell!";
+  }
 }
