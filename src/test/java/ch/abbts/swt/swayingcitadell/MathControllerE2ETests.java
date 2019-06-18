@@ -23,6 +23,6 @@ public class MathControllerE2ETests {
                 .expectStatus()
                 .isOk()
                 .expectBody(Integer.class)
-                .isEqualTo(6);
+                .isEqualTo(5);
     }
 }
