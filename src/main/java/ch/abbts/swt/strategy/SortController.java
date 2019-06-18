@@ -16,29 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class SortController {
   @ApiOperation("Lets you sort by the numbers.")
   @PostMapping(path = "/numbers",
-      consumes = "application/json",
-      produces = "application/json")
+          consumes = "application/json",
+          produces = "application/json")
   public ResponseEntity<IntegerSortResult> sortNumbers(
-      @RequestBody IntegerSortRequestModel requestNumberSort) {
+          @RequestBody IntegerSortRequestModel requestNumberSort) {
     IntegerSortService service = new IntegerSortService();
-
-    switch (requestNumberSort.getSortStrategy()) {
-      case "AUTO":
-      case "BEST":
-        service.setNumberSortStrategy(new NativeSortStrategy());
-        break;
-      case "INSERTION_SORT":
-        service.setNumberSortStrategy(new InsertionSortStrategy());
-        break;
-      case "BUBBLE_SORT":
-      default:
-        service.setNumberSortStrategy(new BubbleSortStrategy());
-        break;
-    }
+    service.setNumberSortStrategy(
+            new IntegerSortStrategyFactory()
+                    .createInstance(requestNumberSort
+                            .getSortStrategy()));
     return new ResponseEntity<>(
-        new IntegerSortResult(
-            service.sort(
-                requestNumberSort.getNumbers())),
-        HttpStatus.OK);
+            new IntegerSortResult(
+                    service.sort(
+                            requestNumberSort.getNumbers())),
+            HttpStatus.OK);
   }
 }
