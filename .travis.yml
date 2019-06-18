@@ -6,3 +6,12 @@ deploy:
 branches:
   only:
     - master
+notifications:
+  webhooks:
+    urls:
+      - https://hooks.zapier.com/hooks/catch/4539398/oy2vcz6/
+    on_success: never # default: always
+    on_failure: always # default: always
+    on_start:   never # default: never
+    on_cancel:  never # default: always
+    on_error:   always # default: always
