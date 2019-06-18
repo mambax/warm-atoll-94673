@@ -18,7 +18,7 @@ public class StrategyControllerE2ETests {
   private WebTestClient webClient;
 
   @Test
-  public void testSort() throws Exception {
+  public void testBubbleSort() throws Exception {
     IntegerSortRequestModel rm = new IntegerSortRequestModel();
     rm.setNumbers(new Integer[]{6, 2, 9, 4, 1});
     rm.setSortStrategy("BUBBLE_SORT");
@@ -32,5 +32,39 @@ public class StrategyControllerE2ETests {
         .isOk()
         .expectBody()
         .json("{result:[1,2,4,6,9]}");
+  }
+
+  @Test
+  public void testInsertionSort() throws Exception {
+    IntegerSortRequestModel rm = new IntegerSortRequestModel();
+    rm.setNumbers(new Integer[]{6, 2, 9, 4, 1});
+    rm.setSortStrategy("INSERTION_SORT");
+    this.webClient
+            .post()
+            .uri("/sort/numbers")
+            .accept(MediaType.APPLICATION_JSON)
+            .body(BodyInserters.fromObject(rm))
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBody()
+            .json("{result:[1,2,4,6,9]}");
+  }
+
+  @Test
+  public void testBestSort() throws Exception {
+    IntegerSortRequestModel rm = new IntegerSortRequestModel();
+    rm.setNumbers(new Integer[]{6, 2, 9, 4, 1});
+    rm.setSortStrategy("BEST");
+    this.webClient
+            .post()
+            .uri("/sort/numbers")
+            .accept(MediaType.APPLICATION_JSON)
+            .body(BodyInserters.fromObject(rm))
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBody()
+            .json("{result:[1,2,4,6,9]}");
   }
 }
