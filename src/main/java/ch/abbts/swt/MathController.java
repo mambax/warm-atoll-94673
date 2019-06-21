@@ -12,6 +12,6 @@ public class MathController {
   public Integer add(
       @RequestParam(name = "summand1", defaultValue = "1") Integer s1,
       @RequestParam(name = "summand2", defaultValue = "1") Integer s2) {
-    return s1 + s2 + 1;
+    return s1 + s2;
   }
 }
