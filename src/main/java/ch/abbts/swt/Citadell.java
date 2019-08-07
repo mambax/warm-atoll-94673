@@ -1,5 +1,8 @@
 package ch.abbts.swt;
 
+import ch.abbts.swt.amqp.AmqpController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -12,8 +15,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 public class Citadell {
+
+  private final Logger logger;
+
+  public Citadell() {
+    this.logger = LoggerFactory.getLogger(Citadell.class);
+  }
+
   /**
-  main.
+   * main.
    */
   public static void main(String[] args) {
     SpringApplication.run(Citadell.class, args);
@@ -23,5 +33,13 @@ public class Citadell {
   @ResponseBody
   String home() {
     return "Hello Citadell!";
+  }
+
+  @RequestMapping("/alert")
+  @ResponseBody
+  String alert() {
+    this.logger.error("FATAL", new RuntimeException("FATAL"));
+    return "An alert has been put to the logs!";
+
   }
 }
