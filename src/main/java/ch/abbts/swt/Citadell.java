@@ -38,7 +38,18 @@ public class Citadell {
   @RequestMapping("/alert")
   @ResponseBody
   String alert() {
-    this.logger.error("FATAL", new RuntimeException("FATAL"));
+    try {
+      throw new RuntimeException("FATAL");
+    } catch (RuntimeException e) {
+      this.logger.error(e.getMessage(), e);
+    }
     return "An alert has been put to the logs!";
+  }
+
+  @RequestMapping("/creditcard-log")
+  @ResponseBody
+  String creditcardLog() {
+    this.logger.info("Credit card information: 1234 5678 1234 5678");
+    return "Sensitive credit card data has been logged, but luckily it was masked!";
   }
 }
