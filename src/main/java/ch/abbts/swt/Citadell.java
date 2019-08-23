@@ -1,8 +1,8 @@
 package ch.abbts.swt;
 
 import ch.abbts.swt.amqp.AmqpController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class Citadell {
   private final Logger logger;
 
   public Citadell() {
-    this.logger = LoggerFactory.getLogger(Citadell.class);
+    this.logger = LogManager.getLogger(Citadell.class);
   }
 
   /**
@@ -40,6 +40,5 @@ public class Citadell {
   String alert() {
     this.logger.error("FATAL", new RuntimeException("FATAL"));
     return "An alert has been put to the logs!";
-
   }
 }
